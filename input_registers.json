@@ -1,0 +1,300 @@
+{
+  "metaid": "ModbusJson",
+  "result": "OK",
+  "registers": [
+    {
+      "id": 0,
+      "name": "ProjectId",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 2,
+      "name": "Version",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 3,
+      "name": "Patch",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 4,
+      "name": "BuildId",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 6,
+      "name": "MainboardId",
+      "type": "UInt128",
+      "len": 128
+    },
+    {
+      "id": 14,
+      "name": "ChassisSerialNumber",
+      "type": "UInt64",
+      "len": 64
+    },
+    {
+      "id": 18,
+      "name": "state",
+      "type": "Enum16",
+      "len": 16
+    },
+    {
+      "id": 20,
+      "name": "Livetime[s]",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 22,
+      "name": "Uptime[s]",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 768,
+      "name": "warnings",
+      "type": "Sized+Uint16[31]",
+      "len": 528
+    },
+    {
+      "id": 832,
+      "name": "errors",
+      "type": "Sized+Uint16[31]",
+      "len": 528
+    },
+    {
+      "id": 1000,
+      "name": "Stack-ProductCode",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 1002,
+      "name": "Stack-Cycles",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 1004,
+      "name": "Stack-Runtime[s]",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 1006,
+      "name": "Stack-H2[NL]",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 1008,
+      "name": "Stack-H2-Flow[NL/hour]",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 1010,
+      "name": "Stack-SerialNumber",
+      "type": "UInt64",
+      "len": 64
+    },
+    {
+      "id": 1014,
+      "name": "CoolingType",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 1200,
+      "name": "Electrolyser",
+      "type": "Enum16",
+      "len": 16
+    },
+    {
+      "id": 4000,
+      "name": "Configuration-InProgress",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 4001,
+      "name": "Configuration-OverModbus",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 4002,
+      "name": "Configuration-LastResult",
+      "type": "Int32",
+      "len": 32
+    },
+    {
+      "id": 4004,
+      "name": "Configuration-InvalidatedHolding",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 4600,
+      "name": "Heartbeat",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 7000,
+      "name": "LSH102B_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7001,
+      "name": "LSHH102A_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7002,
+      "name": "LSL102D_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7003,
+      "name": "LSM102C_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7004,
+      "name": "PSH102_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7007,
+      "name": "TSH108_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7009,
+      "name": "WPS104_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7010,
+      "name": "DRYCONTACT_in",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 7500,
+      "name": "F103A_in_rpm",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7502,
+      "name": "F104B_in_rpm",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7504,
+      "name": "F108C_in_rpm",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7506,
+      "name": "FM106_in_lmin",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7508,
+      "name": "HASS_in_a",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7510,
+      "name": "PSU_in_v",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7512,
+      "name": "PT101A_in_bar",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7514,
+      "name": "PT101C_in_bar",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7516,
+      "name": "PT105_in_bar",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7518,
+      "name": "TT102A_in_c",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7520,
+      "name": "TT106_in_c",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7526,
+      "name": "V24_in_v",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7532,
+      "name": "BOARD_in_c",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7538,
+      "name": "HT104_in_ppm",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 7540,
+      "name": "TE108_in_c",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 8002,
+      "name": "PT101C_in_v",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 8004,
+      "name": "HASS_in_v",
+      "type": "IEEE-754 float32",
+      "len": 32
+    }
+  ]
+}

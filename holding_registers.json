@@ -1,0 +1,180 @@
+{
+  "metaid": "ModbusJson",
+  "result": "OK",
+  "registers": [
+    {
+      "id": 0,
+      "name": "UnixTimestamp[s]",
+      "type": "UInt64",
+      "len": 64
+    },
+    {
+      "id": 4,
+      "name": "Reboot",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 5,
+      "name": "Locate",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 6,
+      "name": "System_Maintenance",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1000,
+      "name": "Electrolyze",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1002,
+      "name": "ProductionRate[%]",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 1010,
+      "name": "Blowdown",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1011,
+      "name": "WaterFill",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1013,
+      "name": "Maintenance",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1014,
+      "name": "Preheat",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1015,
+      "name": "Flush",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 1016,
+      "name": "RunProofTest",
+      "type": "UInt16",
+      "len": 16
+    },
+    {
+      "id": 4000,
+      "name": "Configuration-Begin",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 4001,
+      "name": "Configuration-Commit",
+      "type": "boolean",
+      "len": 16
+    },
+    {
+      "id": 4020,
+      "name": "Ethernet_Address_ip",
+      "type": "Uint32",
+      "len": 32
+    },
+    {
+      "id": 4022,
+      "name": "Ethernet_Netmask_ip",
+      "type": "Uint32",
+      "len": 32
+    },
+    {
+      "id": 4024,
+      "name": "Ethernet_Gateway_ip",
+      "type": "Uint32",
+      "len": 32
+    },
+    {
+      "id": 4038,
+      "name": "Log_CloudSkipPriority",
+      "type": "Int32",
+      "len": 32
+    },
+    {
+      "id": 4042,
+      "name": "Log_SyslogSkipPriority",
+      "type": "Int32",
+      "len": 32
+    },
+    {
+      "id": 4044,
+      "name": "Log_SyslogAddr_ip",
+      "type": "Uint32",
+      "len": 32
+    },
+    {
+      "id": 4046,
+      "name": "Log_SyslogPort",
+      "type": "Uint16",
+      "len": 16
+    },
+    {
+      "id": 4142,
+      "name": "Chassis_Altitude_m",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 4308,
+      "name": "Stack_MaxTankPressure_bar",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 4310,
+      "name": "Stack_RestartTankPressure_bar",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 4396,
+      "name": "Stack_ProductionRate_percent",
+      "type": "IEEE-754 float32",
+      "len": 32
+    },
+    {
+      "id": 4600,
+      "name": "Heartbeat_ModbusTimeout_s",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 4602,
+      "name": "Heartbeat_GatewayTimeout_s",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 4604,
+      "name": "Heartbeat_UcmTimeout_s",
+      "type": "UInt32",
+      "len": 32
+    },
+    {
+      "id": 7005,
+      "name": "V106_out_open",
+      "type": "boolean",
+      "len": 16
+    }
+  ]
+}
