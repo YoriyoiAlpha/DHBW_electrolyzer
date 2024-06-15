@@ -16,11 +16,17 @@ class ModBus_device:
 
     # Read an input register
     def read_input_reg(self, addr, nb):
-        return self.conn.read_input_registers(addr, nb)
-
+        res = self.conn.read_input_registers(addr, nb)
+        if res is None:
+            raise IOError(f"Error while reading register {addr}")
+        return res
+            
     # read an holding register
     def read_hold_reg(self, addr, nb):
-        return self.conn.read_holding_registers(addr, nb)
+        res = self.conn.read_holding_registers(addr, nb)
+        if res is None:
+            raise IOError(f"Error while reading register {addr}")
+        return res
 
     # read a uint32 from an input register
     def read_in_uint32(self, addr):
@@ -37,6 +43,7 @@ class ModBus_device:
         for r in raw:
             res <<= 16
             res += r
+        return res
 
     def read_in_float32(self, addr):
         raw = self.read_in_uint32(addr)
@@ -51,7 +58,8 @@ class ModBus_device:
         raw = self.read_input_reg(addr, len)
         return bytes(raw).decode("utf-8")
 
-    def get_input_reg(self, name):
+    # get the value of a register given it's name (as defined in JSON)
+    def get_input_reg(self, name) -> int | float | str:
         reg = self.input_registers[name]
 
         if(reg.type == "UInt16"):
@@ -91,5 +99,6 @@ class ModBus_device:
 
         raise NotImplementedError(f"type {reg.type} not implemented")
 
-    def dump_all_in_reg(self):
+    # dump all the values in the inputs registers
+    def dump_all_in_reg(self) -> dict[str, int|float|str]:
         return {r.name: self.get_input_reg(r.name) for r in self.input_registers.values()}

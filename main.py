@@ -25,6 +25,9 @@ while True:
     for v in data:
         if(data[v] == NotImplemented):
             data[v] = -1
+        # if int larger than 64 bits convert it to string because influxDB only support int64
+        if(type(data[v]) == int and data[v].bit_length() > 64):
+            data[v] = str(data[v])
         point = Point("electrolyser").field(v, data[v])
         write_api.write(bucket=bucket, org="DHBW", record=point)
     time.sleep(1)

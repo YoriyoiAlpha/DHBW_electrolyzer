@@ -1,9 +1,9 @@
 class Register():
-    def __init__(self, name, addr, len, type):
-        self.name = name
-        self.addr = addr
-        self.len = len
-        self.type = type
+    def __init__(self, name: str, addr: str, len: int, type: str):
+        self.name: str = name
+        self.addr: str = addr
+        self.len: int = len
+        self.type: str = type
 
     def __repr__(self):
         return self.__str__()
