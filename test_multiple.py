@@ -23,6 +23,8 @@ regs = [
     (8002,4)
 ]
 
+regs = regs[0:2]
+
 def get_range(addr, len):
     res = conn.read_input_registers(addr, len)
     print(res)
