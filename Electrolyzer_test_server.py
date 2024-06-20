@@ -25,7 +25,8 @@ class MyDataHandler(DataHandler):
         for i in range(count):
             if input_register[i + address] != 1:
                 print("address unset")
-                return DataHandler.Return(exp_code=EXP_ILLEGAL_FUNCTION)
+                # return DataHandler.Return(exp_code=EXP_ILLEGAL_FUNCTION)
+                return DataHandler.Return(1)
         return super().read_i_regs(address, count, srv_info)
 
     def write_coils(self, address, bits_l, srv_info):
