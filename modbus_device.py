@@ -3,6 +3,8 @@ import pyModbusTCP.utils as utils
 
 from Register import Register
 
+MODBUS_MAX_LEN = 125
+
 class ModBus_device:
     def __init__(self, addr, port, uid):
         self.addr: str = addr
@@ -58,35 +60,33 @@ class ModBus_device:
         raw = self.read_input_reg(addr, len)
         return bytes(raw).decode("utf-8")
 
-    # get the value of a register given it's name (as defined in JSON)
-    def get_input_reg(self, name) -> int | float | str:
+    # convert a register from raw bytes to its value
+    def get_input_reg(self, name, raw) -> int | float | str:
         reg = self.input_registers[name]
 
         if(reg.type == "UInt16"):
-            val = self.read_input_reg(reg.addr, 1)
-            if(val is None or len(val) == 0):
-                raise IOError(f"Error while reading register {reg}")
-            return val[0]
+            return raw[0]
 
         if(reg.type == "UInt32"):
-            val = self.read_in_uint32(reg.addr)
-            return val
+            return utils.word_list_to_long(raw, long_long=False)[0]
 
         if(reg.type == "UInt64"):
-            val = self.read_in_uint64(reg.addr)
-            return val
+            return utils.word_list_to_long(raw, long_long=True)[0]
 
         if(reg.type == "UInt128"):
-            val = self.read_in_uint128(reg.addr)
-            return val
+            res = 0
+            for r in raw:
+                res <<= 16
+                res += r
+            return res
 
         if(reg.type == "IEEE-754 float32"):
-            val = self.read_in_float32(reg.addr)
-            return val
+            uint = utils.word_list_to_long(raw, long_long=False)[0]
+            return utils.decode_ieee(uint)
 
         if(reg.type == "Int32"):
-            val = self.read_in_int32(reg.addr)
-            return val
+            uint = utils.word_list_to_long(raw, long_long=False)[0]
+            return utils.get_2comp(uint, val_size=32)
 
         if(reg.type == "Enum16"):
             return NotImplemented
@@ -95,10 +95,38 @@ class ModBus_device:
             return NotImplemented
 
         if(reg.type == "boolean"):
-            return NotImplemented
+            return raw[0] != 0
 
         raise NotImplementedError(f"type {reg.type} not implemented")
 
+    def read_input_register(self, regs: list[Register]) -> dict[str, int | str| float]:
+        regs.sort(key = lambda v: v.addr)
+
+        reg_range_start = 0
+        reg_range_end = 0
+
+        res = {}
+
+        for i, r in enumerate(regs[1:]):
+            i = i + 1
+
+            if r.addr - regs[reg_range_start].addr > MODBUS_MAX_LEN or r.addr != regs[reg_range_end].addr + regs[reg_range_end].len // 16 or i == len(regs) - 1:
+                s_reg = regs[reg_range_start]
+                e_reg = regs[reg_range_end]
+
+                print(s_reg.addr, e_reg.addr + e_reg.len // 16 - s_reg.addr)
+                read_regs = self.read_input_reg(s_reg.addr, e_reg.addr + e_reg.len // 16 - s_reg.addr)
+
+                read_regs_map = {e.name: self.get_input_reg(e.name, read_regs[e.addr - s_reg.addr: e.addr - s_reg.addr + e.len // 16]) for e in regs[reg_range_start: reg_range_end]}
+
+                res.update(read_regs_map)
+
+                reg_range_start = i
+                
+            reg_range_end = i            
+
+        return res
+    
     # dump all the values in the inputs registers
     def dump_all_in_reg(self) -> dict[str, int|float|str]:
-        return {r.name: self.get_input_reg(r.name) for r in self.input_registers.values()}
+        return self.read_input_register(list(self.input_registers.values()))

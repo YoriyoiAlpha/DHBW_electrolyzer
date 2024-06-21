@@ -1,7 +1,7 @@
 class Register():
-    def __init__(self, name: str, addr: str, len: int, type: str):
+    def __init__(self, name: str, addr: int, len: int, type: str):
         self.name: str = name
-        self.addr: str = addr
+        self.addr: int = addr
         self.len: int = len
         self.type: str = type
 
