@@ -117,7 +117,7 @@ class ModBus_device:
                 print(s_reg.addr, e_reg.addr + e_reg.len // 16 - s_reg.addr)
                 read_regs = self.read_input_reg(s_reg.addr, e_reg.addr + e_reg.len // 16 - s_reg.addr)
 
-                read_regs_map = {e.name: self.get_input_reg(e.name, read_regs[e.addr - s_reg.addr: e.addr - s_reg.addr + e.len // 16]) for e in regs[reg_range_start: reg_range_end]}
+                read_regs_map = {e.name: self.get_input_reg(e.name, read_regs[e.addr - s_reg.addr: e.addr - s_reg.addr + e.len // 16]) for e in regs[reg_range_start: reg_range_end+1]}
 
                 res.update(read_regs_map)
 
