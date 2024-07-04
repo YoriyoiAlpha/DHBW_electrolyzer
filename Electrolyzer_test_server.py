@@ -8,8 +8,12 @@ with open("input_regs_dump.csv") as f:
     for i, l in enumerate(f.readlines()):
          if l != "None\n":
             input_register[i] = int(l)
-
-print(input_register)
+holding_register = {}
+with open("holding_regs_dump.csv") as f:
+    for i, l in enumerate(f.readlines()):
+         if l != "None\n":
+            holding_register[i] = int(l)
+print(holding_register)
 
 class MyDataHandler(DataHandler):
     def read_coils(self, address, count, srv_info):
@@ -20,7 +24,14 @@ class MyDataHandler(DataHandler):
 
     def read_h_regs(self, address, count, srv_info):
         print(f"holding register read {address} x{count}")
-        return DataHandler.Return(exp_code=EXP_NONE, data=[0] * count)
+        res = []
+        for i in range(count):
+            if not address + i in holding_register:
+                print(f"address unset {address + i}")
+                return DataHandler.Return(exp_code=EXP_DATA_ADDRESS)
+            else:
+                res.append(holding_register[address + i])
+        return DataHandler.Return(exp_code=EXP_NONE, data=res)
 
     def read_i_regs(self, address, count, srv_info):
         print(f"input register read {address} x{count}")
