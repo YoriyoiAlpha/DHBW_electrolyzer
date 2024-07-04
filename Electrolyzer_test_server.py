@@ -19,7 +19,8 @@ class MyDataHandler(DataHandler):
         return super().read_d_inputs(address, count, srv_info)
 
     def read_h_regs(self, address, count, srv_info):
-        return super().read_h_regs(address, count, srv_info)
+        print(f"holding register read {address} x{count}")
+        return DataHandler.Return(exp_code=EXP_NONE, data=[0] * count)
 
     def read_i_regs(self, address, count, srv_info):
         print(f"input register read {address} x{count}")

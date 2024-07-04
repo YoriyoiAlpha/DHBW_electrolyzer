@@ -11,3 +11,10 @@ with open("input_regs_dump.csv", "w") as f:
         if not res is None:
             res = res[0]
         f.write(f"{res}\n")
+
+with open("holding_regs_dump.csv", "w") as f:
+    for i in tqdm.tqdm(range(NB_REGS)):
+        res = conn.read_holding_registers(i, 1)
+        if not res is None:
+            res = res[0]
+        f.write(f"{res}\n")
