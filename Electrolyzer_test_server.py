@@ -48,6 +48,8 @@ class MyDataHandler(DataHandler):
         return super().write_coils(address, bits_l, srv_info)
 
     def write_h_regs(self, address, words_l, srv_info):
+        print(f"Write to holding register {address}: {words_l}")
+        holding_register[address] = words_l
         return super().write_h_regs(address, words_l, srv_info)
         
 s = ModbusServer(data_hdl = MyDataHandler(), port = 4502)
